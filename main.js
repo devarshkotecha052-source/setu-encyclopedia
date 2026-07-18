@@ -676,7 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const infoDesc = document.getElementById('geo-info-desc');
   const networkLayer = document.querySelector('.layer-network');
   
-  const ecoNodes = document.querySelectorAll('.eco-node');
+  const ecoNodes = document.querySelectorAll('.geo-eco-node');
   const ecoExpl = document.getElementById('eco-expl');
   
   const hubData = {
