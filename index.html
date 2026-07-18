@@ -237,120 +237,144 @@
 
   
   <!-- Experience Setu Simulation -->
+  
+  <!-- Experience Setu Dual-Screen Simulation -->
   <section id="experience" class="section" style="background: #ffffff; overflow: hidden; position: relative;">
-    <div class="container fade-up">
-      <span class="sec-tag">Experience Setu</span>
-      <h2 class="sec-title">Interactive API Journey</h2>
-      
-      <div class="sim-layout">
-        <!-- Controls -->
-        <div class="sim-controls">
-          <div class="control-group">
-            <label>Select Scenario</label>
-            <select id="sim-scenario" class="sim-select">
-              <option value="kyc">KYC Verification</option>
-              <option value="payment">Payment Collection</option>
-              <option value="aa">Account Aggregation</option>
-            </select>
-          </div>
-          
-          <div class="control-group">
-            <label>Active Persona</label>
-            <div class="persona-tabs">
-              <button class="p-tab active" data-persona="developer">Developer</button>
-              <button class="p-tab" data-persona="customer">Customer</button>
-              <button class="p-tab" data-persona="bank">Bank</button>
-            </div>
-            <p id="persona-desc" style="font-size: 0.8rem; margin-top: 8px; color: var(--text-tertiary);">You are viewing the flow from the perspective of the application developer integrating Setu.</p>
-          </div>
-          
-          <div class="step-tracker" id="step-tracker">
-            <!-- Populated by JS -->
-          </div>
-          
-          <button class="btn-primary" id="btn-run-sim" style="width: 100%; margin-top: 16px;">Start Guided Tour</button>
-          <button class="btn-outline" id="btn-next-step" style="width: 100%; margin-top: 12px; display: none; background: var(--text-primary); color: #fff; border: none;">Next Step ➔</button>
-        </div>
+    <div class="container fade-up" style="max-width: 1400px;">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="sec-tag">Experience Setu</span>
+        <h2 class="sec-title">Interactive Product Demo</h2>
+        <p style="color: var(--text-tertiary); max-width: 600px; margin: 16px auto 0;">Interact with the mobile app on the left to see how Setu seamlessly orchestrates the backend infrastructure on the right.</p>
         
-        <!-- Visual Flow -->
-        <div class="sim-visual">
-          <div class="node-network">
-            <div class="net-node" id="node-customer">
-               <div class="node-icon">👤</div>
-               <span>Customer App</span>
-            </div>
-            <div class="net-path" id="path-1">
-               <div class="packet-sim" id="packet-1"></div>
-            </div>
-            <div class="net-node core" id="node-setu">
-               <div class="node-icon">⚡</div>
-               <span>Setu API Gateway</span>
-            </div>
-            <div class="net-path" id="path-2">
-               <div class="packet-sim" id="packet-2"></div>
-            </div>
-            <div class="net-node" id="node-bank">
-               <div class="node-icon">🏦</div>
-               <span id="bank-name">Partner Bank</span>
-            </div>
-          </div>
-          
-          <div class="sim-gamification" id="sim-gamification">
-            <div class="learning-summary">
-              <h3 style="color: #38a169; margin-bottom: 16px;">✓ Journey Completed</h3>
-              <div class="summary-content">
-                <p><strong>Problem Solved:</strong> Legacy bank integration is slow and fragmented. Setu acts as a unified translation layer.</p>
-                <p><strong>Setu's Value:</strong> Standardized APIs reduced integration from months to hours.</p>
-                <p><strong>Participants:</strong> Customer, App Developer, Setu API Gateway, and Partner Banks.</p>
-              </div>
-              <button class="btn-primary" id="btn-restart" style="margin-top: 24px; width: 100%;">Restart Simulation</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Live Dashboard -->
-        <div class="sim-dashboard">
-          <div class="dash-header">
-            <h4>Live Explanation</h4>
-            <div class="view-toggle">
-              <button class="v-tab active" data-view="narrative">Guided</button>
-              <button class="v-tab" data-view="dev">Developer</button>
-            </div>
-          </div>
-          
-          <div class="dash-body active" id="view-narrative">
-            <h3 id="step-title" style="color: var(--primary-color); margin-bottom: 12px; font-size: 1.1rem;">Step 1: User Initiates Request</h3>
-            
-            <div class="narrative-block">
-              <h5>What's happening?</h5>
-              <p id="desc-what">The customer begins a financial service request through a partner application.</p>
-            </div>
-            
-            <div class="narrative-block">
-              <h5>Why is this necessary?</h5>
-              <p id="desc-why">Every financial journey starts with a user action, such as checking account data or initiating a payment.</p>
-            </div>
-            
-            <div class="narrative-block">
-              <h5>Setu's Role</h5>
-              <p id="desc-role">Setu prepares a secure API request and routes it to the appropriate financial institution.</p>
-            </div>
-            
-            <details class="tech-insight">
-              <summary>Technical Insight</summary>
-              <p id="desc-tech" style="font-family: monospace; font-size: 0.8rem; margin-top: 8px; color: var(--text-tertiary);">POST /api/v1/init - The client SDK initiates a secure TLS handshake with Setu's API Gateway.</p>
-            </details>
-          </div>
-          
-          <div class="dash-body dev-view" id="view-dev">
-            <pre id="dev-logs" style="font-size: 0.75rem; color: #a0aec0; white-space: pre-wrap;">Waiting for simulation...</pre>
-          </div>
+        <div class="scenario-selector" style="margin-top: 32px;">
+          <button class="scen-tab active" data-scenario="kyc">KYC Verification</button>
+          <button class="scen-tab" data-scenario="aa">Account Aggregation</button>
+          <button class="scen-tab" data-scenario="payment">UPI Payment</button>
         </div>
       </div>
+      
+      <div class="dual-sim-layout">
+        <!-- LEFT: Mobile App Mockup -->
+        <div class="phone-container">
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-screen" id="app-screen-container">
+              <!-- Screens injected by JS -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- RIGHT: Backend & Educational View -->
+        <div class="backend-view">
+          
+          <!-- Top: Network Diagram -->
+          <div class="network-diagram-card">
+            <h4 class="card-title">Live Infrastructure Diagram</h4>
+            <div class="node-network">
+              <div class="net-node" id="node-customer">
+                 <div class="node-icon">📱</div>
+                 <span>Partner App</span>
+              </div>
+              <div class="net-path" id="path-1">
+                 <div class="packet-sim" id="packet-1"></div>
+              </div>
+              <div class="net-node core" id="node-setu">
+                 <div class="node-icon">⚡</div>
+                 <span>Setu API</span>
+              </div>
+              <div class="net-path" id="path-2">
+                 <div class="packet-sim" id="packet-2"></div>
+              </div>
+              <div class="net-node" id="node-bank">
+                 <div class="node-icon">🏦</div>
+                 <span id="bank-name">Regulated Bank</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Split Info & Dashboard -->
+          <div class="backend-lower-split">
+            <!-- Dynamic Narrative Panel -->
+            <div class="narrative-card">
+              <h4 class="card-title" id="step-title">Waiting for interaction...</h4>
+              <div class="narrative-content">
+                <div class="narrative-block">
+                  <h5>What's happening?</h5>
+                  <p id="desc-what">Use the smartphone on the left to begin.</p>
+                </div>
+                <div class="narrative-block">
+                  <h5>Why is this necessary?</h5>
+                  <p id="desc-why">-</p>
+                </div>
+                <div class="narrative-block">
+                  <h5>What is Setu doing?</h5>
+                  <p id="desc-role">-</p>
+                </div>
+                <details class="tech-insight">
+                  <summary>Technical Insight</summary>
+                  <p id="desc-tech" style="font-family: monospace; font-size: 0.8rem; margin-top: 8px; color: var(--text-tertiary);">-</p>
+                </details>
+              </div>
+            </div>
+
+            <!-- Live Metrics Dashboard -->
+            <div class="metrics-card">
+              <h4 class="card-title">Live Metrics</h4>
+              <div class="metric-grid">
+                <div class="metric-box">
+                  <span class="m-label">Status</span>
+                  <span class="m-val" id="dash-status">Idle</span>
+                </div>
+                <div class="metric-box">
+                  <span class="m-label">API Calls</span>
+                  <span class="m-val" id="dash-apis">0</span>
+                </div>
+                <div class="metric-box">
+                  <span class="m-label">Network Latency</span>
+                  <span class="m-val" id="dash-latency">0ms</span>
+                </div>
+                <div class="metric-box">
+                  <span class="m-label">Security Layer</span>
+                  <span class="m-val" style="color:#38a169;">TLS 1.3 Active</span>
+                </div>
+              </div>
+              <div class="live-chart" style="margin-top: 24px;">
+                <div class="bar" style="height: 10%"></div>
+                <div class="bar" style="height: 10%"></div>
+                <div class="bar" style="height: 10%"></div>
+                <div class="bar" style="height: 10%"></div>
+                <div class="bar" style="height: 10%"></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Educational Toast Notification -->
+      <div class="edu-toast" id="edu-toast">
+        <div class="toast-header">💡 Did You Know?</div>
+        <p id="toast-msg">Setu standardizes responses from different banks into a consistent format.</p>
+      </div>
+      
+      <!-- Final Summary Overlay -->
+      <div class="sim-gamification" id="sim-gamification">
+        <div class="learning-summary">
+          <h3 style="color: #38a169; margin-bottom: 16px;">✓ Customer Journey Completed</h3>
+          <div class="summary-content">
+            <p><strong>Total Steps:</strong> <span id="sum-steps">4</span></p>
+            <p><strong>APIs Invoked:</strong> <span id="sum-apis">3</span></p>
+            <p><strong>Time Taken:</strong> <span id="sum-time">1.2s</span></p>
+            <p style="margin-top: 16px;"><strong>Key Learning:</strong> By embedding Setu's APIs directly into the application flow, the customer never had to leave the app, resulting in a seamless embedded finance experience.</p>
+          </div>
+          <button class="btn-primary" id="btn-restart" style="margin-top: 24px; width: 100%;">Restart Demo</button>
+        </div>
+      </div>
+      
     </div>
   </section>
-
   <!-- 4. Geography & Scale -->
+
   <section id="scale" class="section" style="background: #091016; color: #fff;">
     <div class="container fade-up">
       <span class="sec-tag" style="color:#62d3d6;">Geography & Scale</span>

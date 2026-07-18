@@ -1,138 +1,8 @@
-import './style.css'
+const fs = require('fs');
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Scroll Progress
-  const progressBar = document.createElement('div');
-  progressBar.className = 'scroll-progress';
-  document.body.appendChild(progressBar);
+let js = fs.readFileSync('main.js', 'utf8');
 
-  window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    progressBar.style.width = scrolled + '%';
-  });
-
-  // 2. Intersection Observer (Fade, Stagger, Counters)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        if (entry.target.classList.contains('counter')) {
-          animateCounter(entry.target);
-          entry.target.classList.remove('counter');
-        }
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.fade-up, .stagger-item, .counter').forEach(el => observer.observe(el));
-
-  function animateCounter(el) {
-    const target = parseFloat(el.getAttribute('data-target'));
-    const isFloat = !Number.isInteger(target);
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-    const update = () => {
-      current += step;
-      if (current < target) {
-        el.innerText = isFloat ? current.toFixed(1) : Math.ceil(current).toLocaleString();
-        requestAnimationFrame(update);
-      } else {
-        el.innerText = (isFloat ? target.toFixed(1) : target.toLocaleString()) + (el.getAttribute('data-suffix') || '');
-      }
-    };
-    update();
-  }
-
-  // 3. API Mock Console
-  const runApiBtn = document.getElementById('run-api-btn');
-  const apiResponse = document.getElementById('api-response');
-  if (runApiBtn && apiResponse) {
-    runApiBtn.addEventListener('click', () => {
-      apiResponse.innerHTML = '<span style="color:#718096">Connecting to Setu API...</span>';
-      setTimeout(() => {
-        apiResponse.innerHTML = `{
-  <span style="color:#42cacd">"status"</span>: <span style="color:#38a169">"success"</span>,
-  <span style="color:#42cacd">"data"</span>: {
-    <span style="color:#42cacd">"kyc_verified"</span>: <span style="color:#e53e3e">true</span>,
-    <span style="color:#42cacd">"customer_id"</span>: <span style="color:#38a169">"SETU-88X9A"</span>,
-    <span style="color:#42cacd">"latency_ms"</span>: <span style="color:#e53e3e">42</span>
-  }
-}`;
-      }, 800);
-    });
-  }
-
-  // 4. Before/After Slider (Friction)
-  const slider = document.getElementById('friction-slider');
-  const sliderImage = document.querySelector('.slider-after');
-  if (slider && sliderImage) {
-    slider.addEventListener('input', (e) => {
-      sliderImage.style.clipPath = `polygon(0 0, ${e.target.value}% 0, ${e.target.value}% 100%, 0 100%)`;
-    });
-  }
-
-  // 5. Founders Tabs
-  const fTabs = document.querySelectorAll('.f-tab');
-  const fBios = document.querySelectorAll('.f-bio');
-  fTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      fTabs.forEach(t => t.classList.remove('active'));
-      fBios.forEach(b => b.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('bio-' + tab.getAttribute('data-target')).classList.add('active');
-    });
-  });
-
-  // 6. Map Timeline Slider
-  const mapSlider = document.getElementById('map-slider');
-  const mapYear = document.getElementById('map-year');
-  const mapPins = document.querySelectorAll('.map-pin');
-  if (mapSlider && mapYear) {
-    mapSlider.addEventListener('input', (e) => {
-      const year = e.target.value;
-      mapYear.innerText = year;
-      mapPins.forEach(pin => {
-        if (parseInt(pin.getAttribute('data-year')) <= year) {
-          pin.style.opacity = '1';
-          pin.style.transform = 'translate(-50%, -50%) scale(1)';
-        } else {
-          pin.style.opacity = '0';
-          pin.style.transform = 'translate(-50%, -50%) scale(0.5)';
-        }
-      });
-    });
-  }
-
-  // 7. Mouse Parallax (Hero)
-  const hero = document.querySelector('.hero');
-  const orbs = document.querySelectorAll('.orb');
-  if (hero) {
-    hero.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 40;
-      const y = (e.clientY / window.innerHeight - 0.5) * 40;
-      orbs.forEach((orb, i) => {
-        const speed = (i + 1) * 0.5;
-        orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-      });
-    });
-  }
-
-  // 8. Business Model Canvas Expander
-  document.querySelectorAll('.bmc-box').forEach(box => {
-    box.addEventListener('click', () => {
-      box.classList.toggle('expanded');
-    });
-  });
-});
-
-
-
-
-
-
+const newLogic = `
 // Experience Setu Dual-Screen Simulation Logic
 document.addEventListener('DOMContentLoaded', () => {
   const scenTabs = document.querySelectorAll('.scen-tab');
@@ -164,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'kyc-1',
-          html: `
+          html: \`
             <div class="app-header">CryptoX App</div>
             <div class="app-card">
               <h4 style="margin-bottom:8px;">Identity Verification</h4>
@@ -172,22 +42,22 @@ document.addEventListener('DOMContentLoaded', () => {
               <input type="text" class="app-input" value="ABCDE1234F" readonly />
               <button class="app-btn" onclick="simTrigger('kyc', 1)">Verify PAN</button>
             </div>
-          `
+          \`
         },
         {
           id: 'kyc-2',
-          html: `
+          html: \`
             <div class="app-header">CryptoX App</div>
             <div class="app-card" style="text-align:center; padding: 48px 16px;">
               <div style="margin-bottom:16px; font-size:2rem;">⏳</div>
               <h4>Checking NSDL...</h4>
               <p style="font-size:0.85rem; color:#718096;">Please do not close this app.</p>
             </div>
-          `
+          \`
         },
         {
           id: 'kyc-3',
-          html: `
+          html: \`
             <div class="app-header">CryptoX App</div>
             <div class="app-card" style="text-align:center; padding: 48px 16px;">
               <div style="margin-bottom:16px; font-size:2rem; color:#38a169;">✓</div>
@@ -195,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size:0.85rem; color:#718096;">Welcome to CryptoX!</p>
               <button class="app-btn" style="margin-top:24px;" onclick="showSummary(2, '1.4s')">Start Trading</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -212,18 +82,18 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'aa-1',
-          html: `
+          html: \`
             <div class="app-header">LendSmart</div>
             <div class="app-card">
               <h4 style="margin-bottom:8px;">Check Loan Eligibility</h4>
               <p style="font-size:0.85rem; color:#718096; margin-bottom:16px;">Securely connect your bank to fetch 6 months of statements.</p>
               <button class="app-btn" onclick="simTrigger('aa', 1)">Connect Bank via AA</button>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-2',
-          html: `
+          html: \`
             <div class="app-header" style="font-size:1rem; color:#42cacd;">Setu AA Gateway</div>
             <div class="app-card">
               <h4 style="margin-bottom:8px;">Grant Consent</h4>
@@ -231,18 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size:0.8rem; margin-bottom:16px;"><strong>Purpose:</strong> Loan Underwriting</p>
               <button class="app-btn" style="background:#091016;" onclick="simTrigger('aa', 2)">Approve & Fetch Data</button>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-3',
-          html: `
+          html: \`
             <div class="app-header">LendSmart</div>
             <div class="app-card" style="text-align:center;">
               <h4 style="color:#38a169;">Loan Approved!</h4>
               <p style="font-size:0.85rem; color:#718096; margin-bottom:16px;">Based on your HDFC statements, you are eligible for ₹5,00,000.</p>
               <button class="app-btn" onclick="showSummary(4, '3.2s')">Accept Offer</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -257,55 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
           await runPacketSequence();
           transitionScreen('aa-3');
           showToast('Setu standardizes responses from different banks into a consistent JSON format.');
-        }
-      }
-    },
-    payment: {
-      screens: [
-        {
-          id: 'pay-1',
-          html: `
-            <div class="app-header">QuickPay</div>
-            <div class="app-card">
-              <h4 style="margin-bottom:8px;">Send Money</h4>
-              <input type="text" class="app-input" value="₹5,000" readonly style="font-size: 1.5rem; font-weight: bold; text-align: center;" />
-              <p style="font-size:0.85rem; color:#718096; margin-bottom:16px; text-align:center;">To: Merchant Store</p>
-              <button class="app-btn" onclick="simTrigger('payment', 1)">Pay with UPI</button>
-            </div>
-          `
-        },
-        {
-          id: 'pay-2',
-          html: `
-            <div class="app-header" style="font-size:1rem; color:#42cacd;">Setu Payment Gateway</div>
-            <div class="app-card" style="text-align:center; padding: 48px 16px;">
-              <div style="margin-bottom:16px; font-size:2rem;">⏳</div>
-              <h4>Awaiting NPCI Auth...</h4>
-              <p style="font-size:0.85rem; color:#718096;">Check your UPI App</p>
-            </div>
-          `
-        },
-        {
-          id: 'pay-3',
-          html: `
-            <div class="app-header">QuickPay</div>
-            <div class="app-card" style="text-align:center;">
-              <div style="margin-bottom:16px; font-size:2rem; color:#38a169;">✓</div>
-              <h4 style="color:#38a169;">Payment Successful</h4>
-              <p style="font-size:0.85rem; color:#718096; margin-bottom:16px;">Txn ID: SETU987654321</p>
-              <button class="app-btn" onclick="showSummary(3, '2.1s')">View Receipt</button>
-            </div>
-          `
-        }
-      ],
-      actions: {
-        1: async () => {
-          transitionScreen('pay-2');
-          updateBackend('Initiating UPI Collect', 'A UPI payment request is generated.', 'Required for real-time bank transfers.', 'Setu routes the transaction to NPCI.', 'POST /payments/upi-collect');
-          showToast('Setu handles the complex UPI specifications so developers can just use a simple POST request.');
-          await runPacketSequence();
-          transitionScreen('pay-3');
-          updateBackend('Payment Confirmed', 'The merchant app is notified of the success.', 'To finalize the checkout flow.', 'Setu receives the webhook and alerts the app.', 'WEBHOOK: { status: "PAID" }');
         }
       }
     }
@@ -441,3 +262,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init
   loadScenario('kyc');
 });
+`;
+
+const splitToken = "// Experience Setu Simulation Logic";
+const parts = js.split(splitToken);
+if (parts.length > 1) {
+    fs.writeFileSync('main.js', parts[0] + newLogic);
+}
