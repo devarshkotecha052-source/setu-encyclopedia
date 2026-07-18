@@ -383,11 +383,11 @@
           </div>
           
           <div class="geo-map-wrapper">
-            <!-- Simplified Base India SVG -->
-            
-            <svg class="geo-base-map" viewBox="0 0 1024 1024" preserveAspectRatio="xMidYMid meet">
-              <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" stroke="none">
-                <path class="india-outline" style="fill:rgba(66,202,205,0.1); stroke:rgba(66,202,205,0.3); stroke-width:15;" d="M4040 10225 c-14 -8 -40 -14 -58 -15 -64 0 -119 -22 -173 -66 -57
+
+            <div class="geo-map-inner" style="position: relative; width: 100%; aspect-ratio: 1 / 1; max-width: 600px; margin: 0 auto;">
+              <svg class="geo-base-map" viewBox="0 0 1024 1024" preserveAspectRatio="xMidYMid meet" style="width:100%; height:100%;">
+                <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" stroke="none">
+                  <path class="india-outline" style="fill:rgba(66,202,205,0.1); stroke:rgba(66,202,205,0.3); stroke-width:15;" d="M4040 10225 c-14 -8 -40 -14 -58 -15 -64 0 -119 -22 -173 -66 -57
 -47 -124 -77 -199 -89 -25 -4 -89 -29 -142 -56 l-97 -49 -17 -56 c-9 -33 -30
 -71 -49 -92 -31 -34 -35 -36 -121 -42 -71 -5 -104 -13 -158 -38 -83 -39 -130
 -40 -211 -7 -33 14 -91 30 -130 36 -38 6 -86 19 -106 29 -46 24 -69 26 -152
@@ -515,52 +515,53 @@ l30 31 -38 32 c-25 21 -46 31 -60 28 -13 -2 -29 3 -40 15 -18 20 -11 34 21 40
 30 0 80 34 80 55 0 7 16 44 35 81 19 37 35 81 35 98 0 17 9 45 20 61 26 39 26
 75 1 75 -10 0 -38 -7 -61 -15 -23 -8 -44 -15 -45 -15 -1 0 -8 13 -15 29 -8 21
 -21 32 -43 37 -43 9 -67 32 -67 64 0 15 -6 33 -14 39 -23 19 -79 23 -106 6z" />
-              </g>
+                </g>
+                
+                <!-- SVG Paths overlay for API network -->
+                <g class="geo-routes layer-network">
+                  <!-- BLR(307,737) to BOM(184,563) -->
+                  <path id="route-blr-bom" class="geo-path" d="M 307,737 Q 150,650 184,563" />
+                  <circle class="geo-packet"><animateMotion dur="2s" repeatCount="indefinite"><mpath href="#route-blr-bom"/></animateMotion></circle>
+                  
+                  <!-- BLR(307,737) to DEL(286,307) -->
+                  <path id="route-blr-del" class="geo-path" d="M 307,737 Q 200,500 286,307" />
+                  <circle class="geo-packet" style="animation-delay:0.5s;"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#route-blr-del"/></animateMotion></circle>
+                  
+                  <!-- BLR(307,737) to HYD(317,614) -->
+                  <path id="route-blr-hyd" class="geo-path" d="M 307,737 Q 350,650 317,614" />
+                  <circle class="geo-packet" style="animation-delay:1s;"><animateMotion dur="1.5s" repeatCount="indefinite"><mpath href="#route-blr-hyd"/></animateMotion></circle>
+                  
+                  <!-- BLR(307,737) to MAA(358,747) -->
+                  <path id="route-blr-maa" class="geo-path" d="M 307,737 Q 350,750 358,747" />
+                  <circle class="geo-packet" style="animation-delay:0.2s;"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#route-blr-maa"/></animateMotion></circle>
+                </g>
+              </svg>
               
-              <!-- SVG Paths overlay for API network -->
-              <g class="geo-routes layer-network">
-                <!-- BLR(430,760) to BOM(256,614) -->
-                <path id="route-blr-bom" class="geo-path" d="M 430,760 Q 250,700 256,614" />
-                <circle class="geo-packet"><animateMotion dur="2s" repeatCount="indefinite"><mpath href="#route-blr-bom"/></animateMotion></circle>
-                
-                <!-- BLR(430,760) to DEL(358,327) -->
-                <path id="route-blr-del" class="geo-path" d="M 430,760 Q 450,500 358,327" />
-                <circle class="geo-packet" style="animation-delay:0.5s;"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#route-blr-del"/></animateMotion></circle>
-                
-                <!-- BLR(430,760) to HYD(430,634) -->
-                <path id="route-blr-hyd" class="geo-path" d="M 430,760 Q 450,700 430,634" />
-                <circle class="geo-packet" style="animation-delay:1s;"><animateMotion dur="1.5s" repeatCount="indefinite"><mpath href="#route-blr-hyd"/></animateMotion></circle>
-                
-                <!-- BLR(430,760) to MAA(471,800) -->
-                <path id="route-blr-maa" class="geo-path" d="M 430,760 Q 460,820 471,800" />
-                <circle class="geo-packet" style="animation-delay:0.2s;"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#route-blr-maa"/></animateMotion></circle>
-              </g>
-            </svg>
-            
-            <!-- Absolute Hubs -->
-            <div class="geo-hub hq layer-hq" style="top: 74%; left: 42%;" data-hub="blr" data-year="2018">
-              <div class="geo-beacon"></div>
-              <span>Bengaluru</span>
-            </div>
-            
-            <div class="geo-hub layer-banks" style="top: 60%; left: 25%;" data-hub="bom" data-year="2019">
-              <div class="geo-pulse"></div>
-              <span>Mumbai</span>
-            </div>
-            
-            <div class="geo-hub layer-stack" style="top: 32%; left: 35%;" data-hub="del" data-year="2020">
-              <div class="geo-pulse"></div>
-              <span>Delhi (UIDAI)</span>
-            </div>
-            
-            <div class="geo-hub layer-banks" style="top: 62%; left: 42%;" data-hub="hyd" data-year="2021">
-              <div class="geo-pulse"></div>
-              <span>Hyderabad</span>
-            </div>
-            
-            <div class="geo-hub layer-stack" style="top: 78%; left: 46%;" data-hub="maa" data-year="2022">
-              <div class="geo-pulse"></div>
-              <span>Chennai (AA)</span>
+              <!-- Absolute Hubs (Percentages of the 1:1 container exactly match the 1024 viewBox) -->
+              <div class="geo-hub hq layer-hq" style="top: 72%; left: 30%;" data-hub="blr" data-year="2018">
+                <div class="geo-beacon"></div>
+                <span>Bengaluru</span>
+              </div>
+              
+              <div class="geo-hub layer-banks" style="top: 55%; left: 18%;" data-hub="bom" data-year="2019">
+                <div class="geo-pulse"></div>
+                <span>Mumbai</span>
+              </div>
+              
+              <div class="geo-hub layer-stack" style="top: 30%; left: 28%;" data-hub="del" data-year="2020">
+                <div class="geo-pulse"></div>
+                <span>Delhi (UIDAI)</span>
+              </div>
+              
+              <div class="geo-hub layer-banks" style="top: 60%; left: 31%;" data-hub="hyd" data-year="2021">
+                <div class="geo-pulse"></div>
+                <span>Hyderabad</span>
+              </div>
+              
+              <div class="geo-hub layer-stack" style="top: 73%; left: 35%;" data-hub="maa" data-year="2022">
+                <div class="geo-pulse"></div>
+                <span>Chennai (AA)</span>
+              </div>
             </div>
 
           </div>
