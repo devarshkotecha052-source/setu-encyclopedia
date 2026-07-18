@@ -79,8 +79,8 @@ a { color: var(--primary-color); text-decoration: none; transition: var(--transi
 .f-time-item::before { content: ''; position: absolute; left: -31px; top: 4px; width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%; border: 2px solid #fff; }
 
 /* 3. Business Model */
-.eco-flow { display: flex; justify-content: space-between; align-items: center; background: #f9fbfd; padding: 60px; border-radius: 16px; border: 1px solid var(--surface-border); margin-bottom: 64px; position: relative; }
-.eco-node { background: #fff; border: 2px solid var(--surface-border); padding: 24px; border-radius: 12px; width: 220px; text-align: center; z-index: 2; position: relative; transition: var(--transition); box-shadow: var(--shadow); cursor: pointer; }
+.eco-flow { display: flex; justify-content: space-between; align-items: center; background: #f9fbfd; padding: 40px; border-radius: 16px; border: 1px solid var(--surface-border); margin-bottom: 64px; position: relative; overflow-x: auto; }
+.eco-node { background: #fff; border: 2px solid var(--surface-border); padding: 24px 16px; border-radius: 12px; width: 220px; flex-shrink: 0; text-align: center; z-index: 2; position: relative; transition: var(--transition); box-shadow: var(--shadow); cursor: pointer; }
 .eco-node:hover { border-color: var(--primary-color); transform: scale(1.05); }
 .eco-node h4 { margin-bottom: 8px; color: var(--primary-color); }
 .eco-arrow { flex: 1; height: 4px; background: var(--surface-border); position: relative; z-index: 1; }
