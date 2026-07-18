@@ -241,21 +241,23 @@
   <!-- Experience Setu Dual-Screen Simulation -->
   
   <!-- Experience Setu Premium V3 Simulation -->
-  <section id="experience" class="section" style="background: #ffffff; overflow: hidden; position: relative;">
+  
+  <!-- Experience Setu Premium V4 Simulation (Interactive) -->
+  <section id="experience" class="section" style="background: #ffffff; position: relative;">
     <div class="container fade-up" style="max-width: 1600px; padding: 0 24px;">
       
       <div style="text-align: center; margin-bottom: 40px;">
         <span class="sec-tag">Product Lab</span>
         <h2 class="sec-title">The Setu Orchestration Engine</h2>
-        <p style="color: var(--text-tertiary); max-width: 700px; margin: 16px auto 0;">Interact with the mock application on the left to witness how Setu powers the complex financial infrastructure in real-time on the right.</p>
+        <p style="color: var(--text-tertiary); max-width: 700px; margin: 16px auto 0;">Interact with the mock application on the left to witness how Setu powers the complex financial infrastructure step-by-step.</p>
         
         <div class="scenario-selector v3-tabs" style="margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
           <button class="v3-tab active" data-scenario="kyc">🔐 KYC Verification</button>
           <button class="v3-tab" data-scenario="aa">🏦 Account Aggregation</button>
           <button class="v3-tab" data-scenario="payment">💸 UPI Payment</button>
-          <button class="v3-tab disabled">📊 Statement Fetch</button>
-          <button class="v3-tab disabled">💳 Loan Eligibility</button>
-          <button class="v3-tab disabled">👤 Identity Check</button>
+          <button class="v3-tab" data-scenario="statement">📊 Statement Fetch</button>
+          <button class="v3-tab" data-scenario="loan">💳 Loan Eligibility</button>
+          <button class="v3-tab" data-scenario="identity">👤 Identity Check</button>
         </div>
       </div>
       
@@ -274,8 +276,9 @@
         
         <!-- RIGHT: Orchestration Engine (60%) -->
         <div class="v3-backend-wrapper">
-          <div class="v3-orch-header">
-            <span class="glow-dot"></span> SETU ORCHESTRATION ENGINE
+          <div class="v3-orch-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div><span class="glow-dot"></span> SETU ORCHESTRATION ENGINE</div>
+            <button id="btn-next-step" class="v3-btn" style="width: auto; padding: 8px 24px; margin: 0; background: var(--primary-color); display: none; font-size: 0.8rem; box-shadow: 0 4px 15px rgba(66,202,205,0.4);">Next Step ➔</button>
           </div>
           
           <!-- Architecture Diagram -->
@@ -283,33 +286,6 @@
             <div class="v3-diagram-track" id="v3-diagram-track">
               <!-- Nodes and Paths injected by JS based on scenario to keep HTML clean -->
             </div>
-          </div>
-          
-          <!-- Middle Grid: Timeline, Logs, Inspector -->
-          <div class="v3-middle-grid">
-            
-            <div class="v3-panel v3-timeline-panel">
-              <h5 class="v3-panel-title">Sync Timeline</h5>
-              <div class="v3-timeline-list" id="v3-timeline">
-                <!-- Checkmarks injected -->
-              </div>
-            </div>
-            
-            <div class="v3-panel v3-terminal-panel">
-              <h5 class="v3-panel-title">Live Server Logs</h5>
-              <div class="v3-terminal-body" id="v3-terminal">
-                <div class="log-line sys">System initialized. Awaiting user interaction...</div>
-              </div>
-            </div>
-            
-            <div class="v3-panel v3-json-panel">
-              <h5 class="v3-panel-title">API Inspector</h5>
-              <pre class="v3-json-body" id="v3-json">{
-  "status": "idle",
-  "message": "waiting for request"
-}</pre>
-            </div>
-            
           </div>
           
           <!-- Bottom Grid: Explanations & Metrics -->
@@ -361,7 +337,7 @@
         <div class="v3-cel-card">
           <div class="v3-cel-icon">🎉</div>
           <h3>Journey Complete</h3>
-          <p>Congratulations! You just experienced how Setu orchestrates multiple financial systems behind a single tap.</p>
+          <p>Congratulations! You just stepped through the entire orchestration flow.</p>
           <div class="v3-cel-stats">
             <div><strong id="cel-apis">7</strong><span>API Calls</span></div>
             <div><strong id="cel-time">183ms</strong><span>Total Time</span></div>
@@ -374,6 +350,7 @@
     </div>
   </section>
   <!-- 4. Geography & Scale -->
+
 
 
   <section id="scale" class="section" style="background: #091016; color: #fff;">

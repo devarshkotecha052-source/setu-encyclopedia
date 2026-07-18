@@ -1,4 +1,6 @@
-// Experience Setu Dual-Screen Simulation Logic (V4 - Interactive Step-by-Step)
+const fs = require('fs');
+
+const jsContent = `// Experience Setu Dual-Screen Simulation Logic (V4 - Interactive Step-by-Step)
 document.addEventListener('DOMContentLoaded', () => {
   // Intersection Observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'kyc-1',
-          html: `
+          html: \`
             <div class="v3-app-header">CryptoX</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px;">Identity Verification</h4>
@@ -60,11 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <input type="text" class="v3-input" value="ABCDE1234F" readonly />
               <button class="v3-btn" onclick="simTrigger('kyc', 1)">Verify PAN securely</button>
             </div>
-          `
+          \`
         },
         {
           id: 'kyc-2',
-          html: `
+          html: \`
             <div class="v3-app-header">CryptoX</div>
             <div class="v3-app-card" style="padding: 32px 20px;">
               <div class="skeleton-line" style="width: 60%;"></div>
@@ -72,11 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="skeleton-line" style="width: 80%;"></div>
               <p style="font-size:0.85rem; color:#718096; margin-top:24px; text-align:center;">Verifying with NSDL...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'kyc-3',
-          html: `
+          html: \`
             <div class="v3-app-header">CryptoX</div>
             <div class="v3-app-card" style="text-align:center; padding: 40px 20px;">
               <div style="font-size:3rem; color:#38a169; margin-bottom:16px;">✓</div>
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size:0.85rem; color:#718096; margin-top:8px;">Welcome to CryptoX! Your account is fully activated.</p>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('234ms')">Go to Portfolio</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
           await activateNode('n-app');
           await waitNext();
           
-          updateExpl('App calls backend', 'Secure server-to-server communication ensures secrets aren\'t exposed.', 'Setu expects traffic only from verified backend servers.');
+          updateExpl('App calls backend', 'Secure server-to-server communication ensures secrets aren\\'t exposed.', 'Setu expects traffic only from verified backend servers.');
           await sendPacket('n-app', 'n-srv');
           await activateNode('n-srv');
           await waitNext();
@@ -112,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
           await activateNode('n-auth');
           await waitNext();
           
-          updateExpl('Protocol Translation', 'Setu maps the simple JSON request to NSDL\'s complex XML format.', 'API Router formats the request and securely transmits it to the government.');
+          updateExpl('Protocol Translation', 'Setu maps the simple JSON request to NSDL\\'s complex XML format.', 'API Router formats the request and securely transmits it to the government.');
           await sendPacket('n-auth', 'n-rout');
           await activateNode('n-rout');
           await waitNext();
@@ -148,18 +150,18 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'aa-1',
-          html: `
+          html: \`
             <div class="v3-app-header">LendSmart</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px;">Loan Eligibility</h4>
               <p style="font-size:0.85rem; color:#718096; margin-bottom:16px;">We need 6 months of bank statements to assess your loan.</p>
               <button class="v3-btn" onclick="simTrigger('aa', 1)">Link Bank Account</button>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-2',
-          html: `
+          html: \`
             <div class="v3-app-header" style="color: #42cacd;">Setu AA Screen</div>
             <div class="v3-app-card" style="border: 2px solid #42cacd;">
               <h4 style="margin-bottom:8px;">Approve Data Share</h4>
@@ -170,29 +172,29 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <button class="v3-btn" style="background:#42cacd;" onclick="simTrigger('aa', 2)">I Approve</button>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-3',
-          html: `
+          html: \`
             <div class="v3-app-header">LendSmart</div>
             <div class="v3-app-card" style="padding: 32px 20px;">
                <div class="skeleton-line" style="width: 100%;"></div>
                <div class="skeleton-line" style="width: 80%;"></div>
                <p style="font-size:0.85rem; color:#718096; margin-top:24px; text-align:center;">Decrypting Bank Data...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-4',
-          html: `
+          html: \`
             <div class="v3-app-header">LendSmart</div>
             <div class="v3-app-card" style="text-align:center;">
               <h4 style="color:#38a169;">Approved: ₹5,00,000</h4>
               <p style="font-size:0.85rem; color:#718096; margin-top:8px;">Based on your healthy cash flows, you are pre-approved!</p>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('412ms')">Accept Loan</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -217,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
           await activateNode('n-fip');
           incApi();
           
-          updateExpl('Bank Packing Data', 'The user\'s bank (FIP) queries its core banking system for 6 months of statements.', 'Setu securely polls or waits for a webhook from the bank.');
+          updateExpl('Bank Packing Data', 'The user\\'s bank (FIP) queries its core banking system for 6 months of statements.', 'Setu securely polls or waits for a webhook from the bank.');
           await waitNext();
           
           updateExpl('Data Decryption', 'The bank statement is returned heavily encrypted to prevent tampering.', 'Setu decrypts it locally and parses the raw ISO formats into clean JSON.');
@@ -242,29 +244,29 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'pay-1',
-          html: `
+          html: \`
             <div class="v3-app-header">QuickPay</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px; text-align:center;">Send to Merchant</h4>
               <input type="text" class="v3-input" value="₹2,500" readonly style="font-size:1.5rem; text-align:center; font-weight:bold;" />
               <button class="v3-btn" onclick="simTrigger('payment', 1)">Pay Securely</button>
             </div>
-          `
+          \`
         },
         {
           id: 'pay-2',
-          html: `
+          html: \`
             <div class="v3-app-header">QuickPay</div>
             <div class="v3-app-card" style="text-align:center; padding: 32px 20px;">
                <div class="skeleton-line" style="width: 100%;"></div>
                <div class="skeleton-line" style="width: 60%;"></div>
                <p style="font-size:0.85rem; color:#718096; margin-top:24px;">Please authorize on your UPI app...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'pay-3',
-          html: `
+          html: \`
             <div class="v3-app-header">QuickPay</div>
             <div class="v3-app-card" style="text-align:center;">
               <div style="font-size:3rem; color:#38a169; margin-bottom:16px;">✓</div>
@@ -272,13 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size:0.85rem; color:#718096; margin-top:8px;">Transaction SETU12345 confirmed.</p>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('1.2s')">View Receipt</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
         1: async () => {
           transitionScreen('pay-2');
-          updateExpl('UPI Collect Initiated', 'A payment request is triggered to the user\'s VPA (UPI ID).', 'Setu abstracts away the complex UPI spec via a single REST API call.');
+          updateExpl('UPI Collect Initiated', 'A payment request is triggered to the user\\'s VPA (UPI ID).', 'Setu abstracts away the complex UPI spec via a single REST API call.');
           await activateNode('n-app');
           await sendPacket('n-app', 'n-gw');
           await activateNode('n-gw');
@@ -312,29 +314,29 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'stat-1',
-          html: `
+          html: \`
             <div class="v3-app-header">MoneyView</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px;">Upload Statement</h4>
               <p style="font-size:0.85rem; color:#718096; margin-bottom:16px;">Upload your PDF e-statement to analyze your spending.</p>
               <button class="v3-btn" onclick="simTrigger('statement', 1)">Upload statement.pdf</button>
             </div>
-          `
+          \`
         },
         {
           id: 'stat-2',
-          html: `
+          html: \`
             <div class="v3-app-header">MoneyView</div>
             <div class="v3-app-card" style="padding: 32px 20px;">
                <div class="skeleton-line" style="width: 100%;"></div>
                <div class="skeleton-line" style="width: 80%;"></div>
                <p style="font-size:0.85rem; color:#718096; margin-top:24px; text-align:center;">Extracting transactions...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'stat-3',
-          html: `
+          html: \`
             <div class="v3-app-header">MoneyView</div>
             <div class="v3-app-card">
               <h4 style="color:#38a169;">Insights Ready</h4>
@@ -348,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('1.5s')">View Full Report</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -361,12 +363,12 @@ document.addEventListener('DOMContentLoaded', () => {
           incApi();
           await waitNext();
           
-          updateExpl('PDF Parsing', 'The PDF is a visual document, not structured data.', 'Setu\'s proprietary parser reads the document structure, applies the password, and extracts raw transaction strings.');
+          updateExpl('PDF Parsing', 'The PDF is a visual document, not structured data.', 'Setu\\'s proprietary parser reads the document structure, applies the password, and extracts raw transaction strings.');
           await sendPacket('n-gw', 'n-parser');
           await activateNode('n-parser');
           await waitNext();
           
-          updateExpl('ML Categorization', 'Raw strings like "UPI-SWIGGY-1234" need context.', 'Setu\'s AI engine categorizes it as "Food & Dining" and detects if it\'s a credit or debit.');
+          updateExpl('ML Categorization', 'Raw strings like "UPI-SWIGGY-1234" need context.', 'Setu\\'s AI engine categorizes it as "Food & Dining" and detects if it\\'s a credit or debit.');
           await sendPacket('n-parser', 'n-engine');
           await activateNode('n-engine');
           await waitNext();
@@ -390,28 +392,28 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'loan-1',
-          html: `
+          html: \`
             <div class="v3-app-header">CreditApp</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px;">Check Score</h4>
               <p style="font-size:0.85rem; color:#718096; margin-bottom:16px;">We need your consent to fetch your credit report.</p>
               <button class="v3-btn" onclick="simTrigger('loan', 1)">Fetch Credit Score</button>
             </div>
-          `
+          \`
         },
         {
           id: 'loan-2',
-          html: `
+          html: \`
             <div class="v3-app-header">CreditApp</div>
             <div class="v3-app-card" style="padding: 32px 20px;">
                <div class="skeleton-line" style="width: 100%;"></div>
                <p style="font-size:0.85rem; color:#718096; margin-top:24px; text-align:center;">Querying Bureaus...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'loan-3',
-          html: `
+          html: \`
             <div class="v3-app-header">CreditApp</div>
             <div class="v3-app-card" style="text-align:center;">
               <div style="font-size:3rem; color:#38a169; margin-bottom:8px;">785</div>
@@ -419,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size:0.85rem; color:#718096; margin-top:8px;">You have no defaults in the last 3 years.</p>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('290ms')">Apply for Card</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -455,28 +457,28 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'id-1',
-          html: `
+          html: \`
             <div class="v3-app-header">Onboarder</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px;">Aadhaar OKYC</h4>
               <input type="text" class="v3-input" value="1234 5678 9012" readonly />
               <button class="v3-btn" onclick="simTrigger('identity', 1)">Send OTP</button>
             </div>
-          `
+          \`
         },
         {
           id: 'id-2',
-          html: `
+          html: \`
             <div class="v3-app-header">Onboarder</div>
             <div class="v3-app-card" style="padding: 32px 20px;">
                <div class="skeleton-line" style="width: 100%;"></div>
                <p style="font-size:0.85rem; color:#718096; margin-top:24px; text-align:center;">Contacting UIDAI...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'id-3',
-          html: `
+          html: \`
             <div class="v3-app-header">Onboarder</div>
             <div class="v3-app-card" style="text-align:center;">
               <h4 style="color:#38a169;">OTP Sent</h4>
@@ -484,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <input type="text" class="v3-input" placeholder="------" style="text-align:center; letter-spacing:4px; font-weight:bold;" />
               <button class="v3-btn" onclick="showCelebration('340ms')">Verify</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -590,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
     track.insertBefore(path, document.getElementById(toId)); 
     
     const pkt = document.createElement('div');
-    pkt.className = `v3-packet ${rev ? 'rev' : 'fwd'}`;
+    pkt.className = \`v3-packet \${rev ? 'rev' : 'fwd'}\`;
     path.appendChild(pkt);
     
     await sleep(600);
@@ -627,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const nd = document.createElement('div');
       nd.className = 'v3-node';
       nd.id = n.id;
-      nd.innerHTML = `<i>${n.icon}</i><span>${n.label}</span>`;
+      nd.innerHTML = \`<i>\${n.icon}</i><span>\${n.label}</span>\`;
       diagramTrack.appendChild(nd);
       if (i < sc.nodes.length - 1) {
         const line = document.createElement('div');
@@ -664,3 +666,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init
   loadScenario('kyc');
 });
+`;
+
+fs.writeFileSync('main.js', jsContent);
