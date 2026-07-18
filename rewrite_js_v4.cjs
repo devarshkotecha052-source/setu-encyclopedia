@@ -1,4 +1,15 @@
-// Experience Setu Dual-Screen Simulation Logic
+const fs = require('fs');
+
+let js = fs.readFileSync('main.js', 'utf8');
+const oldLogicStr = "// Experience Setu Dual-Screen Simulation Logic";
+const oldLogicIndex = js.indexOf(oldLogicStr);
+if (oldLogicIndex === -1) {
+    console.log("Could not find old logic");
+} else {
+    js = js.substring(0, oldLogicIndex);
+}
+
+const newLogic = `// Experience Setu Dual-Screen Simulation Logic
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.v3-tab:not(.disabled)');
   const appScreen = document.getElementById('v3-app-screen');
@@ -39,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'kyc-1',
-          html: `
+          html: \`
             <div class="v3-app-header">CryptoX</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px;">Identity Verification</h4>
@@ -48,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <input type="text" class="v3-input" value="ABCDE1234F" readonly />
               <button class="v3-btn" onclick="simTrigger('kyc', 1)">Verify PAN securely</button>
             </div>
-          `
+          \`
         },
         {
           id: 'kyc-2',
-          html: `
+          html: \`
             <div class="v3-app-header">CryptoX</div>
             <div class="v3-app-card" style="padding: 32px 20px;">
               <div class="skeleton-line" style="width: 60%;"></div>
@@ -60,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="skeleton-line" style="width: 80%;"></div>
               <p style="font-size:0.85rem; color:#718096; margin-top:24px; text-align:center;">Verifying with NSDL...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'kyc-3',
-          html: `
+          html: \`
             <div class="v3-app-header">CryptoX</div>
             <div class="v3-app-card" style="text-align:center; padding: 40px 20px;">
               <div style="font-size:3rem; color:#38a169; margin-bottom:16px;">✓</div>
@@ -72,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size:0.85rem; color:#718096; margin-top:8px;">Welcome to CryptoX! Your account is fully activated.</p>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('234ms')">Go to Portfolio</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -141,18 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'aa-1',
-          html: `
+          html: \`
             <div class="v3-app-header">LendSmart</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px;">Loan Eligibility</h4>
               <p style="font-size:0.85rem; color:#718096; margin-bottom:16px;">We need 6 months of bank statements to assess your loan.</p>
               <button class="v3-btn" onclick="simTrigger('aa', 1)">Link Bank Account</button>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-2',
-          html: `
+          html: \`
             <div class="v3-app-header" style="color: #42cacd;">Setu AA Screen</div>
             <div class="v3-app-card" style="border: 2px solid #42cacd;">
               <h4 style="margin-bottom:8px;">Approve Data Share</h4>
@@ -163,29 +174,29 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <button class="v3-btn" style="background:#42cacd;" onclick="simTrigger('aa', 2)">I Approve</button>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-3',
-          html: `
+          html: \`
             <div class="v3-app-header">LendSmart</div>
             <div class="v3-app-card" style="padding: 32px 20px;">
                <div class="skeleton-line" style="width: 100%;"></div>
                <div class="skeleton-line" style="width: 80%;"></div>
                <p style="font-size:0.85rem; color:#718096; margin-top:24px; text-align:center;">Decrypting Bank Data...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'aa-4',
-          html: `
+          html: \`
             <div class="v3-app-header">LendSmart</div>
             <div class="v3-app-card" style="text-align:center;">
               <h4 style="color:#38a169;">Approved: ₹5,00,000</h4>
               <p style="font-size:0.85rem; color:#718096; margin-top:8px;">Based on your healthy cash flows, you are pre-approved!</p>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('412ms')">Accept Loan</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
@@ -241,29 +252,29 @@ document.addEventListener('DOMContentLoaded', () => {
       screens: [
         {
           id: 'pay-1',
-          html: `
+          html: \`
             <div class="v3-app-header">QuickPay</div>
             <div class="v3-app-card">
               <h4 style="margin-bottom:8px; text-align:center;">Send to Merchant</h4>
               <input type="text" class="v3-input" value="₹2,500" readonly style="font-size:1.5rem; text-align:center; font-weight:bold;" />
               <button class="v3-btn" onclick="simTrigger('payment', 1)">Pay Securely</button>
             </div>
-          `
+          \`
         },
         {
           id: 'pay-2',
-          html: `
+          html: \`
             <div class="v3-app-header">QuickPay</div>
             <div class="v3-app-card" style="text-align:center; padding: 32px 20px;">
                <div class="skeleton-line" style="width: 100%;"></div>
                <div class="skeleton-line" style="width: 60%;"></div>
                <p style="font-size:0.85rem; color:#718096; margin-top:24px;">Please authorize on your UPI app...</p>
             </div>
-          `
+          \`
         },
         {
           id: 'pay-3',
-          html: `
+          html: \`
             <div class="v3-app-header">QuickPay</div>
             <div class="v3-app-card" style="text-align:center;">
               <div style="font-size:3rem; color:#38a169; margin-bottom:16px;">✓</div>
@@ -271,13 +282,13 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size:0.85rem; color:#718096; margin-top:8px;">Transaction SETU12345 confirmed.</p>
               <button class="v3-btn" style="margin-top:24px;" onclick="showCelebration('1.2s')">View Receipt</button>
             </div>
-          `
+          \`
         }
       ],
       actions: {
         1: async () => {
           transitionScreen('pay-2');
-          updateExpl('UPI Collect', 'A payment request is triggered to the user\'s VPA.', 'Setu handles the complex UPI spec via a simple REST API.');
+          updateExpl('UPI Collect', 'A payment request is triggered to the user\\'s VPA.', 'Setu handles the complex UPI spec via a simple REST API.');
           addTimeline('Collect Triggered');
           addLog('req', 'POST /payments/upi-collect');
           updateJSON({ amount: 250000, vpa: "user@okbank" });
@@ -349,10 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function addLog(type, msg) {
     const d = new Date();
-    const t = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    const t = \`\${d.getHours()}:\${d.getMinutes()}:\${d.getSeconds()}\`;
     const div = document.createElement('div');
-    div.className = `log-line ${type}`;
-    div.innerText = `[${t}] ${msg}`;
+    div.className = \`log-line \${type}\`;
+    div.innerText = \`[\${t}] \${msg}\`;
     termBody.appendChild(div);
     termBody.scrollTop = termBody.scrollHeight;
   }
@@ -360,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function addTimeline(msg) {
     const div = document.createElement('div');
     div.className = 'v3-tl-item visible';
-    div.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+    div.innerHTML = \`<i class="fas fa-check-circle"></i> \${msg}\`;
     tlList.appendChild(div);
     metLat.innerText = Math.floor(Math.random() * 50 + 20) + 'ms';
   }
@@ -390,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
     track.insertBefore(path, document.getElementById(toId)); // Approximate placement for flex wrap
     
     const pkt = document.createElement('div');
-    pkt.className = `v3-packet ${rev ? 'rev' : 'fwd'}`;
+    pkt.className = \`v3-packet \${rev ? 'rev' : 'fwd'}\`;
     path.appendChild(pkt);
     
     await sleep(600); // Packet travel time
@@ -427,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const nd = document.createElement('div');
       nd.className = 'v3-node';
       nd.id = n.id;
-      nd.innerHTML = `<i>${n.icon}</i><span>${n.label}</span>`;
+      nd.innerHTML = \`<i>\${n.icon}</i><span>\${n.label}</span>\`;
       diagramTrack.appendChild(nd);
       // add static path line between nodes (flex will handle flow)
       if (i < sc.nodes.length - 1) {
@@ -465,3 +476,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init
   loadScenario('kyc');
 });
+`;
+
+fs.writeFileSync('main.js', newLogic);
